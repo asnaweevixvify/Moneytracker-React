@@ -50,7 +50,13 @@ function Form() {
       setName('')
       setMoney(0)
       setType('')
-      navigate('/')
+      Swal.fire({
+        title: `<h3>บันทึกรายการสำเร็จ</h3>`,
+        icon: "success",
+        draggable: true
+      }).then(()=>{
+        navigate('/')
+      })
   }
 }
 

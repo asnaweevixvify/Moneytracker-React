@@ -10,14 +10,15 @@ function Home() {
             <Chart />
             <p className='graphdes'>กราฟแสดงรายรับรายจ่าย</p>
         </div>
+        <p className='line-main'></p>
         <div className="earnpay-home">
             <div className="earn-home">
                 <h2>รายรับ</h2>
-                <h1>50000 บาท</h1>
+                <h1>50,000 บาท</h1>
             </div>
             <div className="pay-home">
                 <h2>รายจ่าย</h2>
-                <h1>25000 บาท</h1>
+                <h1>25,000 บาท</h1>
             </div>
         </div>
     </div>
