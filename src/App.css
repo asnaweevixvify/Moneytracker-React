@@ -1,0 +1,107 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+h1{
+  font-family: 'Kanit';
+  font-weight: 500;
+  text-align: center;
+}
+.main-text{
+  margin-top: 60px;
+  font-size: 50px;
+}
+.nav-container{
+  width: 100vw;
+  background-color:#4e4e4e;
+}
+.nav-container ul{
+  display: flex;
+  list-style: none;
+  gap: 150px;
+  align-items: center;
+  height: 70px;
+  justify-content: center;
+}
+.nav-container li{
+  font-family: 'Kanit';
+  font-size: 25px;
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.2s ease-in-out;
+}
+.nav-container li:hover{
+  transform: scale(1.1);
+}
+.nav-container a{
+  color: white;
+}
+.graphdes{
+  font-family: 'Kanit';
+  margin-top: -20px;
+}
+.earnpay-home{
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 60px;
+}
+.earn-home,.pay-home{
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: 2px solid white;
+  border-radius: 15px;
+}
+.pay-home{
+  background-color: red;
+  color: white;
+}
+.earn-home{
+  background-color: green;
+  color: white;
+}
+.earn-home h1,h2,.pay-home h1,h2{
+  font-family: 'Kanit';
+  font-weight: 400;
+}
+.form-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Kanit';
+  margin-top: 50px;
+}
+form p{
+  font-size: 20px;
+}
+form input{
+  width: 500px;
+  height: 50px;
+  font-family: 'Kanit';
+  font-size: 20px;
+}
+form button{
+  width: 500px;
+}
+form select{
+  width: 500px;
+  height: 50px;
+  font-family: 'Kanit';
+  font-size: 20px;
+}
