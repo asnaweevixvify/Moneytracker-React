@@ -15,25 +15,59 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend)
 
 const Barchart = (props) => {
     const info  = props.data
-  const labels = [
+    const labels = [
     'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.',
     'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'
   ];
 
-  useEffect(()=>{
-        const sortInfo = info.sort((a,b)=>a.month - b.month)
+  const [earn,setEarn] = useState(Array(labels.length).fill(0))
+  const [pay,setPay] = useState(Array(labels.length).fill(0))
+  const arr = [1,2,3,4,5,6,7,8,9,10,11,12]
 
-        const combined = sortInfo.reduce((acc,curr)=>{
-           const exit = acc.find(item => item.month === curr.month)
-           if(exit){
-            exit.money = parseFloat(exit.money) + parseFloat(curr.money)
-           }
-           else{
-            acc.push({...curr})
-           }
-           return acc
+  useEffect(()=>{
+        const sortInfo = info.sort((a,b)=>a.month-b.month)
+        const numInfo = sortInfo.map(e=>{
+            return {...e , money:parseFloat(e.money)}
+        })
+
+        const earnListFirst = numInfo.filter((e)=>{
+          return  e.type === 'รายรับ'
+        }).reduce((acc,crr)=>{
+          const exit = acc.find(e => e.month === crr.month)
+          if(exit){
+            exit.money = exit.money + crr.money
+          }
+          else{
+            acc.push({...crr})
+          }
+          return acc
         },[])
-        
+
+        const earnList = earn.map((_, index) => {
+          const found = earnListFirst.find(item => parseInt(item.month) === index + 1);
+          return found ? found.money : 0;
+        });
+        setEarn(earnList)
+
+        const payListFirst = numInfo.filter((e)=>{
+          return  e.type === 'รายจ่าย'
+        }).reduce((acc,crr)=>{
+          const exit = acc.find(e => e.month === crr.month)
+          if(exit){
+            exit.money = exit.money + crr.money
+          }
+          else{
+            acc.push({...crr})
+          }
+          return acc
+        },[])
+
+        const payList = pay.map((_, index) => {
+          const found = payListFirst.find(item => parseInt(item.month) === index + 1);
+          return found ? found.money : 0;
+        });
+        setPay(payList)
+
     },[info])
 
   const data = {
@@ -41,12 +75,12 @@ const Barchart = (props) => {
     datasets: [
       {
         label: 'รายรับ',
-        data: [5000, 7000, 8000, 6000, 7500, 9000, 8500, 8000, 9500, 7000, 7200, 7700],
+        data: earn,
         backgroundColor: 'rgba(75, 192, 192, 0.7)',
       },
       {
         label: 'รายจ่าย',
-        data: [3000, 4000, 5000, 4500, 5000, 6000, 5500, 5800, 6200, 5000, 4900, 5300],
+        data: pay,
         backgroundColor: 'rgba(255, 99, 132, 0.7)',
       },
     ],
