@@ -56,6 +56,8 @@ function Form() {
         draggable: true
       }).then(()=>{
         navigate('/')
+      }).then(()=>{
+        window.location.reload()
       })
   }
 }

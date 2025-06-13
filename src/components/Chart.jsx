@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -9,13 +9,22 @@ import {
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Chart = () => {
+const Chart = (props) => {
+  const [earn,setEarn] = useState(0)
+  const [pay,setPay] = useState(0)
+  
+  useEffect(()=>{
+    if(props){
+      setEarn(props.earnMoney)
+      setPay(props.payMoney)
+    }
+  },[props.earnMoney,props.payMoney])
   const data = {
-    labels: ['รายรับ', 'รายจ่าย'],
+    labels: ['รายรับ','รายจ่าย'],
     datasets: [
       {
         label: 'รายรับรายจ่าย (บาท)',
-        data: [3000, 1500],
+        data: [earn,pay],
         backgroundColor: [
             'rgba(75, 192, 75, 0.7)', 
             'rgba(255, 99, 132, 0.7)'
