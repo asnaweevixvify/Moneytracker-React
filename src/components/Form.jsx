@@ -8,6 +8,7 @@ function Form() {
     const [name,setName] = useState('')
     const [money,setMoney] = useState(0)
     const [type,setType] =  useState('')
+    const [date,setDate] = useState('')
     const navigate = useNavigate()
 
   return (
@@ -27,6 +28,9 @@ function Form() {
             <p>ระบุจำนวนเงิน</p>
             <input type='text' onInput={inputMoney} value={money}></input>
 
+            <p>ระบุวันที่</p>
+            <input type='date' onChange={inputDate} value={date}></input>
+
             <button type='submit'>บันทึกรายการ</button>
         </form>
     </div>
@@ -40,16 +44,25 @@ function Form() {
   function inputMoney(e){
     setMoney(e.target.value)
   }
+  function inputDate(e){
+    setDate(e.target.value)
+  }
   function sendInfo(e){
     e.preventDefault()
+    const dateValue = date
+    const dateObj = new Date(dateValue);
+    const month = dateObj.getMonth() + 1;
     addDoc(collection(db,'track'),{
         name:name,
         money:money,
-        type:type
+        type:type,
+        time:date,
+        month:month
       })
       setName('')
       setMoney(0)
       setType('')
+      setDate('')
       Swal.fire({
         title: `<h3>บันทึกรายการสำเร็จ</h3>`,
         icon: "success",

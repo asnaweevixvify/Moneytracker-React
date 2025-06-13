@@ -15,7 +15,7 @@ h1,h3{
   text-align: center;
 }
 .main-text{
-  margin-top: 60px;
+  margin-top: 110px;
   font-size: 55px;
 }
 .nav-container{
@@ -46,15 +46,22 @@ h1,h3{
 .line-main{
   background-color: white;
   height: 2px;
-  width: 40%;
+  width: 43.5%;
   display: flex;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
 }
+.chartAll{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 .graphdes{
   font-family: 'Kanit';
-  margin-top: -20px;
+  margin-top: -180px;
+  text-align: center;
 }
 .earnpay-home{
   display: flex;
@@ -86,7 +93,7 @@ h1,h3{
 .form-container{
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 form{
   display: flex;
@@ -114,4 +121,44 @@ form select{
   height: 50px;
   font-family: 'Kanit';
   font-size: 20px;
+}
+.earn-container{
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.earn-topic{
+  display: flex;
+  list-style: none;
+  background-color:black;
+  width: 70%;
+  height: 70px;
+}
+.earn-list{
+  display: flex;
+  list-style: none;
+  background-color:gray;
+  width: 70%;
+  height: 70px;
+}
+.earn-topic li ,.earn-list li{
+  font-family: 'Kanit';
+  font-size: 30px;
+  color: white;
+  flex: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+.pay-main{
+  margin-bottom: 40px;
+  margin-top: 20px;
 }

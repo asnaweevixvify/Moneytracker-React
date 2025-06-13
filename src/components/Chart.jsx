@@ -42,8 +42,7 @@ const Chart = (props) => {
         position: 'right',
       },
       title: {
-        display: true,
-        text: 'สัดส่วนค่าใช้จ่าย',
+        display: true
       },
     },
   };
