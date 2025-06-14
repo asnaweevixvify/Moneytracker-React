@@ -141,14 +141,13 @@ form select{
 .earn-list{
   display: flex;
   list-style: none;
-  background-color:gray;
+  background-color:white;
   width: 50%;
   height: 70px;
 }
 .earn-topic li ,.earn-list li{
   font-family: 'Kanit';
   font-size: 30px;
-  color: white;
   flex: 1;
   padding-left: 20px;
   padding-right: 20px;
@@ -156,7 +155,10 @@ form select{
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid white;
+  border: 1px solid gray;
+}
+.earn-list li{
+  color: black;
 }
 .earn-header{
   display: flex;
@@ -197,6 +199,8 @@ form select{
   display: flex;
   list-style: none;
   gap: 20px;
+  align-items: center;
+  justify-content: center;
 }
 .latest-list{
   width: 270px;
@@ -207,4 +211,14 @@ form select{
   margin-top: 15px;
   border: 0px solid transparent;
   border-radius: 15px;
+}
+.regis-container h5{
+  text-align: center;
+  font-weight: 400;
+}
+.regis-container a h5 {
+  color: white;
+}
+i{
+  cursor: pointer;
 }

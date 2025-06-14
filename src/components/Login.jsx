@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword} from 'firebase/auth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 
 
 function Login() {
@@ -20,6 +21,7 @@ function Login() {
             <p>รหัสผ่าน</p>
             <input type='password' onInput={inputPass}></input>
             <button type='submit'>เข้าสู่ระบบ</button>
+            <Link to='/register'><h5>ยังไม่มีบัญชี</h5></Link>
         </form>
     </div>
   )

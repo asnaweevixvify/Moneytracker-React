@@ -42,6 +42,17 @@ function App() {
       }
     },[location,status])
   
+    useEffect(()=>{
+      if(status === false && location.pathname === '/earnpage'){
+        navigate('/login')
+      }
+      else if(status === false && location.pathname === '/paypage'){
+        navigate('/login')
+      }
+      else if(status === false && location.pathname === '/form'){
+        navigate('/login')
+      }
+    },[location,status])
 
   useEffect(()=>{
     async function getTrackData(db){

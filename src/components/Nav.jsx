@@ -33,14 +33,25 @@ function Nav() {
   )
   function signBtn(){
     Swal.fire({
-      title: `<h3>ออกจากระบบสำเร็จ</h3>`,
-      icon: "success",
-      draggable: true
-    }).then(()=>{
-      return signOut(auth)
-    }).then(()=>{
-      window.location.reload()
-    })
+      title: `<h3>ต้องการออกจากระบบหรือไม่ ?</h3>`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText:`<h3>ยกเลิก</h3>`,
+      confirmButtonText: `<h3>ใช่ ออกจากระบบ</h3>`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: `<h3>ออกจากระบบสำเร็จ</h3>`,
+          icon: "success"
+        }).then(()=>{
+          return signOut(auth)
+        }).then(()=>{
+          window.location.reload()
+        })
+      }
+    });
   }
 }
 
