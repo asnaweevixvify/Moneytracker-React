@@ -3,12 +3,14 @@ import '../App.css'
 import Chart from './Chart'
 import Barchart from './BartChart'
 import { useEffect,useState } from 'react'
+import { auth } from './firebase'
 
 function Home(props) {
 
     const [data,setData] = useState([])
     const [earn,setEarn] = useState(0)
     const [pay,setPay] = useState(0)
+    const user = auth.currentUser
 
     useEffect(()=>{ 
         if(props.data){
@@ -17,23 +19,28 @@ function Home(props) {
     },[props.data])
 
     useEffect(()=>{
-        const earnMoney = data.filter((e)=>{
-            return e.type === 'รายรับ'
-        }).map((e)=>{
-            return  parseFloat(e.money)
-        }).reduce((sum,num)=>{
-            return sum + num
-        },0)
-        setEarn(earnMoney)
-
-        const payMoney = data.filter((e)=>{
-            return e.type === 'รายจ่าย'
-        }).map((e)=>{
-            return  parseFloat(e.money)
-        }).reduce((sum,num)=>{
-            return sum + num
-        },0)
-        setPay(payMoney)
+        if(user){
+            const earnMoney = data.filter((e)=>{
+                return e.type === 'รายรับ' && e.uid === user.uid
+            }).map((e)=>{
+                return  parseFloat(e.money)
+            }).reduce((sum,num)=>{
+                return sum + num
+            },0)
+            setEarn(earnMoney)
+    
+            const payMoney = data.filter((e)=>{
+                return e.type === 'รายจ่าย' && e.uid === user.uid
+            }).map((e)=>{
+                return  parseFloat(e.money)
+            }).reduce((sum,num)=>{
+                return sum + num
+            },0)
+            setPay(payMoney)
+        }
+        else{
+            return
+        }
     },[data])
 
   return (

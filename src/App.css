@@ -135,14 +135,14 @@ form select{
   display: flex;
   list-style: none;
   background-color:black;
-  width: 70%;
+  width: 50%;
   height: 70px;
 }
 .earn-list{
   display: flex;
   list-style: none;
   background-color:gray;
-  width: 70%;
+  width: 50%;
   height: 70px;
 }
 .earn-topic li ,.earn-list li{
@@ -158,7 +158,26 @@ form select{
   justify-content: center;
   border: 2px solid white;
 }
-.pay-main{
-  margin-bottom: 40px;
-  margin-top: 20px;
+.earn-header{
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.earn-header select{
+  width: 300px;
+  height: 40px;
+  font-family:Kanit;
+  font-size: 20px;
+  margin-top: 5px;
+}
+.regis-container{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+.regis-main{
+  margin-top: 120px;
 }

@@ -3,6 +3,7 @@ import { getFirestore, collection, getDocs , addDoc , deleteDoc ,doc} from 'fire
 import { db } from './firebase';
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { auth } from './firebase';
 
 function Form() {
     const [name,setName] = useState('')
@@ -10,6 +11,7 @@ function Form() {
     const [type,setType] =  useState('')
     const [date,setDate] = useState('')
     const navigate = useNavigate()
+    const user = auth.currentUser
 
   return (
     <div className="form-container">
@@ -57,7 +59,8 @@ function Form() {
         money:money,
         type:type,
         time:date,
-        month:month
+        month:month,
+        uid:user.uid
       })
       setName('')
       setMoney(0)

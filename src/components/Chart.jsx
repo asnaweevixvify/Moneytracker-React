@@ -27,7 +27,7 @@ const Chart = (props) => {
         data: [earn,pay],
         backgroundColor: [
             'rgba(75, 192, 75, 0.7)', 
-            'rgba(255, 99, 132, 0.7)'
+            'red'
         ],
         borderColor: ['#fff'],
         borderWidth: 2,

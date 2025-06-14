@@ -48,6 +48,7 @@ const Barchart = (props) => {
           return found ? found.money : 0;
         });
         setEarn(earnList)
+        
 
         const payListFirst = numInfo.filter((e)=>{
           return  e.type === 'รายจ่าย'
@@ -81,7 +82,7 @@ const Barchart = (props) => {
       {
         label: 'รายจ่าย',
         data: pay,
-        backgroundColor: 'rgba(255, 99, 132, 0.7)',
+        backgroundColor: 'red',
       },
     ],
   };
