@@ -50,22 +50,26 @@ function Earn(props) {
         </ul>
         {earnList.map((e,index)=>{
             if(e.month === parseInt(month)){
+                e.money = parseFloat(e.money)
+                let resultEarn = Intl.NumberFormat().format(e.money)
                 return(
                     <>
                         <ul className='earn-list'>
                             <li>{e.name}</li>
-                            <li>{e.money}</li>
+                            <li>{resultEarn}</li>
                             <li>{e.time}</li>
                         </ul>
                     </>
                 )
             }
             else if(month === 'blank' || month === 'none'){
+                e.money = parseFloat(e.money)
+                let resultEarn = Intl.NumberFormat().format(e.money)
                 return(
                     <>
                         <ul className='earn-list'>
                             <li>{e.name}</li>
-                            <li>{e.money}</li>
+                            <li>{resultEarn}</li>
                             <li>{e.time}</li>
                         </ul>
                     </>

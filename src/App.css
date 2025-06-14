@@ -15,7 +15,7 @@ h1,h3{
   text-align: center;
 }
 .main-text{
-  margin-top: 110px;
+  margin-top: 60px;
   font-size: 55px;
 }
 .nav-container{
@@ -67,7 +67,7 @@ h1,h3{
   display: flex;
   justify-content: center;
   gap: 40px;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 .earn-home,.pay-home{
   padding-left: 50px;
@@ -180,4 +180,31 @@ form select{
 }
 .regis-main{
   margin-top: 120px;
+}
+.latest-main{
+  text-align: center;
+  margin-top: 30px;
+  font-size: 30px;
+}
+.latest-container{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+}
+.latest-container ul{
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+.latest-list{
+  width: 270px;
+  font-family: 'Kanit';
+  background-color: white;
+  color: black;
+  padding: 15px;
+  margin-top: 15px;
+  border: 0px solid transparent;
+  border-radius: 15px;
 }
