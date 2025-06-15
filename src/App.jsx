@@ -83,17 +83,27 @@ function App() {
     }
   }
 
+  const [editId,setEditId] = useState('')
+  function getEdit(id){
+    setEditId(id)
+  }
+
+  function editItem(data){
+    const docref = doc(db,'track',editId)
+    updateDoc(docref,data)
+  }
+
   return(
       <>
       <Nav/>
         <Routes>
           <Route path='/' element={<Home data={data}/>}></Route>
           <Route path='/form' element={<Form/>}></Route>
-          <Route path='/earnpage' element={<Earn data={data} getDel={getDel}/>}></Route>
-          <Route path='/paypage' element={<Pay data={data} getDel={getDel}/>}></Route>
+          <Route path='/earnpage' element={<Earn data={data} getDel={getDel} getEdit={getEdit}/>}></Route>
+          <Route path='/paypage' element={<Pay data={data} getDel={getDel} getEdit={getEdit}/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
-          <Route path='/edit' element={<Edit/>}></Route>
+          <Route path='/edit' element={<Edit id={editId} data={data} editItem={editItem}/>}></Route>
         </Routes>
       </>
   )

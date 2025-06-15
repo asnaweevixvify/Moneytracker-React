@@ -22,7 +22,6 @@ const Barchart = (props) => {
 
   const [earn,setEarn] = useState(Array(labels.length).fill(0))
   const [pay,setPay] = useState(Array(labels.length).fill(0))
-  const arr = [1,2,3,4,5,6,7,8,9,10,11,12]
 
   useEffect(()=>{
         const sortInfo = info.sort((a,b)=>a.month-b.month)

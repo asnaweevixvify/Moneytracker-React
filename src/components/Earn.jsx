@@ -74,7 +74,7 @@ function Earn(props) {
                             <li>{e.time}</li>
                             <li className='edit'>
                                 <i className="fa-solid fa-1x fa-trash" onClick={()=>getDelId(e.id)}></i> |
-                                <Link to='/edit'><i className="fa-solid fa-1x fa-pen"></i></Link>
+                                <Link to='/edit'><i className="fa-solid fa-1x fa-pen"onClick={()=>getEditId(e.id)}></i></Link>
                             </li>
                         </ul>
                     </>
@@ -91,7 +91,7 @@ function Earn(props) {
                             <li>{e.time}</li>
                             <li className='edit'>
                                 <i className="fa-solid fa-1x fa-trash" onClick={()=>getDelId(e.id)}></i> |
-                                <Link to='/edit'><i className="fa-solid fa-1x fa-pen"></i></Link>
+                                <Link to='/edit'><i className="fa-solid fa-1x fa-pen"  onClick={()=>getEditId(e.id)}></i></Link>
                             </li>
                         </ul>
                     </>
@@ -122,6 +122,9 @@ function Earn(props) {
           })
         }
       });
+  }
+  function getEditId(id){
+    props.getEdit(id)
   }
 }
 
