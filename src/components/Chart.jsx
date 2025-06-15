@@ -40,6 +40,9 @@ const Chart = (props) => {
     plugins: {
       legend: {
         position: 'right',
+        labels: {
+          color: 'white', 
+        },
       },
       title: {
         display: true

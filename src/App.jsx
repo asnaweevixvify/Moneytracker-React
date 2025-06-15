@@ -7,9 +7,10 @@ import Earn from './components/Earn'
 import Pay from './components/Pay'
 import Register from './components/Register'
 import Login from './components/Login'
+import Edit from './components/Edit'
 import { BrowserRouter as Router,Route,Link,Routes, BrowserRouter } from 'react-router-dom'
 import { db } from './components/firebase'
-import { getFirestore, collection, getDocs , addDoc , deleteDoc ,doc} from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs , addDoc,updateDoc , deleteDoc ,doc} from 'firebase/firestore/lite';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 import { auth } from './components/firebase'
@@ -52,6 +53,9 @@ function App() {
       else if(status === false && location.pathname === '/form'){
         navigate('/login')
       }
+      else if(status === false && location.pathname === '/edit'){
+        navigate('/login')
+      }
     },[location,status])
 
   useEffect(()=>{
@@ -67,16 +71,29 @@ function App() {
 
   },[])
 
+  async function getDel(id){
+    if (!id) {
+      console.error("ไม่มี id ส่งเข้ามาเพื่อลบ")
+      return
+    }
+    else{
+      await deleteDoc(doc(db,'track',id))
+      navigate('/')
+      window.location.reload()
+    }
+  }
+
   return(
       <>
       <Nav/>
         <Routes>
           <Route path='/' element={<Home data={data}/>}></Route>
           <Route path='/form' element={<Form/>}></Route>
-          <Route path='/earnpage' element={<Earn data={data}/>}></Route>
-          <Route path='/paypage' element={<Pay data={data}/>}></Route>
+          <Route path='/earnpage' element={<Earn data={data} getDel={getDel}/>}></Route>
+          <Route path='/paypage' element={<Pay data={data} getDel={getDel}/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
+          <Route path='/edit' element={<Edit/>}></Route>
         </Routes>
       </>
   )

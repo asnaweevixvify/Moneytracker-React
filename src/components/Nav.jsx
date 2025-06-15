@@ -26,7 +26,6 @@ function Nav() {
             <Link to='/paypage'><li>รายจ่าย</li></Link>
             <Link to='/form'><li>บันทึกรายการ</li></Link>
             {!status && <Link to='/login'><li>เข้าสู่ระบบ</li></Link>}
-            {!status && <Link to='/register'><li>สมัครบัญชี</li></Link>}
             {status && <li onClick={signBtn}>ออกจากระบบ</li>}
         </ul>
     </div>

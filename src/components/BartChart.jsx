@@ -77,10 +77,10 @@ const Barchart = (props) => {
       {
         label: 'รายรับ',
         data: earn,
-        backgroundColor: 'rgba(75, 192, 192, 0.7)',
+        backgroundColor: 'rgba(75, 192, 75, 0.7)',
       },
       {
-        label: 'รายจ่าย',
+        label: 'รายจ่าย',  
         data: pay,
         backgroundColor: 'red',
       },
@@ -98,6 +98,9 @@ const Barchart = (props) => {
       },
       legend: {
         position: 'top',
+        labels: {
+          color: 'white', 
+        },
       },
     },
     scales: {
@@ -106,13 +109,27 @@ const Barchart = (props) => {
         title: {
           display: true,
           text: 'จำนวนเงิน (บาท)',
+          color: 'white',
         },
+        ticks: {
+          color: 'white', 
+        },
+        grid: {
+          color: 'white', 
+      },
       },
       x: {
         title: {
           display: true,
           text: 'เดือน',
+          color: 'white',
         },
+        ticks: {
+          color: 'white', 
+        },
+        grid: {
+          color: 'white', 
+      },
       },
     },
   };

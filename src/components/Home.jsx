@@ -15,10 +15,15 @@ function Home(props) {
     const sortData = [...data].sort((a,b) => new Date(b.time) - new Date(a.time))
     const [prev,setPrev] = useState(0)
     const [next,setNext] = useState(3)
+    const [loadStatus,setLoadStatus] = useState(true)
 
     useEffect(()=>{ 
-        if(props.data){
+        if(props.data.length > 0){
+            setLoadStatus(false)
             setData(props.data)
+        }
+        else if(props.data.length === 0 ){
+            setLoadStatus(true)
         }
     },[props.data])
 
@@ -62,54 +67,61 @@ function Home(props) {
       return () => unsubscribe();
     },[]);
 
-  return (
-    <div className="home-container">
-        <h1 className='main-text'>บันทึก รายรับ - รายจ่าย</h1>
-        <div className="earnpay-home">
-            <div className="earn-home">
-                <h2>รายรับ</h2>
-                <h1>{resultEarn} บาท</h1>
+  if(loadStatus === false){
+    return (
+        <div className="home-container">
+            <h1 className='main-text'>บันทึก รายรับ - รายจ่าย</h1>
+            <div className="earnpay-home">
+                <div className="earn-home">
+                    <h2>รายรับ</h2>
+                    <h1>{resultEarn} บาท</h1>
+                </div>
+                <div className="pay-home">
+                    <h2>รายจ่าย</h2>
+                    <h1>{resultPay} บาท</h1>
+                </div>
             </div>
-            <div className="pay-home">
-                <h2>รายจ่าย</h2>
-                <h1>{resultPay} บาท</h1>
+            <p className='line-main'></p>
+            <div className="chartAll">
+                <div style={{ width: '300px', height: '300px',display:'flex' , marginTop:'-180px'}}>
+                    {status && <Chart earnMoney={earn} payMoney={pay}/>}
+                </div>
+                <div style={{ width: '400px', height: '400px',display:'flex', marginTop:'0px' }}>
+                    {status && <Barchart data={data}/>}
+                </div>
             </div>
-        </div>
-        <p className='line-main'></p>
-        <div className="chartAll">
-            <div style={{ width: '300px', height: '300px',display:'flex' , marginTop:'-140px'}}>
-                {status && <Chart earnMoney={earn} payMoney={pay}/>}
-            </div>
-            <div style={{ width: '400px', height: '400px',display:'flex', marginTop:'0px' }}>
-                {status && <Barchart data={data}/>}
-            </div>
-        </div>
-        {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย</p>}
-        {status && <h2 className='latest-main'>รายการล่าสุด</h2>}
-        <div className="latest-container">
-            <ul>
-                {status && <i className="fa-solid fa-2x fa-left-long" onClick={decrease}></i>}
-                {sortData.map((e,index)=>{
-                    if(user){
-                        if(index<next && index>=prev && e.uid === user.uid){
-                            e.money = parseFloat(e.money)
-                            let resultLatest = Intl.NumberFormat().format(e.money)
-                            return(
-                                <div className='latest-list'>
-                                    <li><b>ชื่อรายการ</b> : {e.name}</li>
-                                    <li><b>จำนวนเงิน</b> : {resultLatest} บาท</li>
-                                    <li><b>ประเภท</b> : {e.type}</li>
-                                    <li><b>วันทำรายการ</b> : {e.time}</li>
-                                </div>
-                            )
+            {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย</p>}
+            {status && <h2 className='latest-main'>รายการล่าสุด</h2>}
+            <div className="latest-container">
+                <ul>
+                    {status && <i className="fa-solid fa-2x fa-left-long" onClick={decrease}></i>}
+                    {sortData.map((e,index)=>{
+                        if(user){
+                            if(index<next && index>=prev && e.uid === user.uid){
+                                e.money = parseFloat(e.money)
+                                let resultLatest = Intl.NumberFormat().format(e.money)
+                                return(
+                                    <div className='latest-list'>
+                                        <li><b>ชื่อรายการ</b> : {e.name}</li>
+                                        <li><b>จำนวนเงิน</b> : {resultLatest} บาท</li>
+                                        <li><b>ประเภท</b> : {e.type}</li>
+                                        <li><b>วันทำรายการ</b> : {e.time}</li>
+                                    </div>
+                                )
+                            }
                         }
-                    }
-                })}
-                {status && <i className="fa-solid fa-2x fa-right-long" onClick={increase}></i>}
-            </ul>
+                    })}
+                    {status && <i className="fa-solid fa-2x fa-right-long" onClick={increase}></i>}
+                </ul>
+            </div>
         </div>
-    </div>
-  )
+      )
+  }
+  else{
+    return(
+        <h1 className='load'>loading ...</h1>
+    )
+  }
   function increase(){
     if(next === data.length){
         return
