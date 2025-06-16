@@ -16,7 +16,6 @@ function Home(props) {
     const [prev,setPrev] = useState(0)
     const [next,setNext] = useState(3)
     const [loadStatus,setLoadStatus] = useState(true)
-    const [nf,setNf] = useState(false)
     const date = new Date()
     const year = date.getFullYear()
     const month = date.getMonth()
@@ -39,14 +38,6 @@ function Home(props) {
             setLoadStatus(true)
         }
     },[props.data])
-
-    useEffect(()=>{
-        setTimeout(()=>{
-            if(loadStatus){
-                setNf(true)
-            }
-        },5000)
-    },[loadStatus])
 
     useEffect(()=>{
         if(user){
@@ -146,16 +137,10 @@ function Home(props) {
       )
   }
   else if(loadStatus === true){
-    if(!nf){
-        return(
-            <h1 className='load shining-text'>กำลังโหลดข้อมูล...</h1>
-        )
-    }
-    else{
         return(
             <h1 className='load'>ไม่พบข้อมูล</h1>
         )
-    }
+    
   }
  
   function increase(){

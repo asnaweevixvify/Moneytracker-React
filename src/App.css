@@ -248,7 +248,8 @@ i{
   cursor: pointer;
 }
 .load{
-  margin-top: 350px;
+  text-align: center;
+  padding-top: 300px;
 }
 .fa-trash{
   color: red;
@@ -261,7 +262,6 @@ i{
   color: black;
 }
 .shining-text {
-  position: relative;
   background: linear-gradient(
     to right,
     #ffffff 20%,

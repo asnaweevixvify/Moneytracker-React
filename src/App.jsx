@@ -22,6 +22,7 @@ function App() {
   const location = useLocation()
   const navigate = useNavigate()
   const [status,setStatus] = useState(false)
+  const [loading,setLoading] = useState(true)
 
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -54,6 +55,7 @@ function App() {
         ...e.data(),id:e.id
       }))
       setData(newItem)
+      setLoading(false)
   }
   getTrackData(db)
 
@@ -81,20 +83,27 @@ function App() {
     updateDoc(docref,data)
   }
 
+ if(loading){
+  return( 
+    <h1 className='load shining-text'>กำลังโหลดข้อมูล</h1>
+)
+ }
+ else{
   return(
-      <>
-      <Nav/>
-        <Routes>
-          <Route path='/' element={<Home data={data}/>}></Route>
-          <Route path='/form' element={<Form/>}></Route>
-          <Route path='/earnpage' element={<Earn data={data} getDel={getDel} getEdit={getEdit}/>}></Route>
-          <Route path='/paypage' element={<Pay data={data} getDel={getDel} getEdit={getEdit}/>}></Route>
-          <Route path='/register' element={<Register/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
-          <Route path='/edit' element={<Edit id={editId} data={data} editItem={editItem}/>}></Route>
-        </Routes>
-      </>
-  )
+    <>
+    <Nav/>
+      <Routes>
+        <Route path='/' element={<Home data={data}/>}></Route>
+        <Route path='/form' element={<Form/>}></Route>
+        <Route path='/earnpage' element={<Earn data={data} getDel={getDel} getEdit={getEdit}/>}></Route>
+        <Route path='/paypage' element={<Pay data={data} getDel={getDel} getEdit={getEdit}/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/edit' element={<Edit id={editId} data={data} editItem={editItem}/>}></Route>
+      </Routes>
+    </>
+)
+ }
 }
 
 export default App
