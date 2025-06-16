@@ -54,12 +54,14 @@ function Form() {
     const dateValue = date
     const dateObj = new Date(dateValue);
     const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear()
     addDoc(collection(db,'track'),{
         name:name,
         money:money,
         type:type,
         time:date,
         month:month,
+        year:year,
         uid:user.uid
       })
       setName('')

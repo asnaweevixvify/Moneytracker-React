@@ -7,7 +7,7 @@ import { auth } from './firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 
 function Home(props) {
-
+    
     const [data,setData] = useState([])
     const [earn,setEarn] = useState(0)
     const [pay,setPay] = useState(0)
@@ -16,11 +16,24 @@ function Home(props) {
     const [prev,setPrev] = useState(0)
     const [next,setNext] = useState(3)
     const [loadStatus,setLoadStatus] = useState(true)
+    const [nf,setNf] = useState(false)
+    const date = new Date()
+    const year = date.getFullYear()
+    const month = date.getMonth()
+    const monthAll = [
+        'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.',
+        'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'
+      ];
 
     useEffect(()=>{ 
-        if(props.data.length > 0){
+        const myData = props.data.filter((e)=>{
+           if(user){
+            return e.uid === user.uid
+           }
+        })
+        if(myData.length > 0 ){
             setLoadStatus(false)
-            setData(props.data)
+            setData(myData)
         }
         else if(props.data.length === 0 ){
             setLoadStatus(true)
@@ -28,9 +41,17 @@ function Home(props) {
     },[props.data])
 
     useEffect(()=>{
+        setTimeout(()=>{
+            if(loadStatus){
+                setNf(true)
+            }
+        },5000)
+    },[loadStatus])
+
+    useEffect(()=>{
         if(user){
             const earnMoney = data.filter((e)=>{
-                return e.type === 'รายรับ' && e.uid === user.uid
+                return e.type === 'รายรับ' && e.year === year 
             }).map((e)=>{
                 return  parseFloat(e.money)
             }).reduce((sum,num)=>{
@@ -39,7 +60,7 @@ function Home(props) {
             setEarn(earnMoney)
     
             const payMoney = data.filter((e)=>{
-                return e.type === 'รายจ่าย' && e.uid === user.uid
+                return e.type === 'รายจ่าย' && e.year === year 
             }).map((e)=>{
                 return  parseFloat(e.money)
             }).reduce((sum,num)=>{
@@ -73,31 +94,38 @@ function Home(props) {
             <h1 className='main-text'>บันทึก รายรับ - รายจ่าย</h1>
             <div className="earnpay-home">
                 <div className="earn-home">
-                    <h2>รายรับ</h2>
+                    <h2>รายรับ ({year})</h2>
                     <h1>{resultEarn} บาท</h1>
                 </div>
                 <div className="pay-home">
-                    <h2>รายจ่าย</h2>
+                    <h2>รายจ่าย ({year})</h2>
                     <h1>{resultPay} บาท</h1>
                 </div>
             </div>
             <p className='line-main'></p>
+
             <div className="chartAll">
-                <div style={{ width: '300px', height: '300px',display:'flex' , marginTop:'-180px'}}>
-                    {status && <Chart earnMoney={earn} payMoney={pay}/>}
+                <div className='chart-container'>
+                    <div className='chart-round'>
+                        {status && <Chart data={data}/>}
+                        {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย ({monthAll[month]})</p>}
+                    </div>
                 </div>
-                <div style={{ width: '400px', height: '400px',display:'flex', marginTop:'0px' }}>
-                    {status && <Barchart data={data}/>}
+                <div className='chart-container'>
+                    <div className='chart-bar'>
+                        {status && <Barchart data={data}/>}
+                        {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย ({year})</p>}
+                    </div>
                 </div>
             </div>
-            {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย</p>}
+
             {status && <h2 className='latest-main'>รายการล่าสุด</h2>}
             <div className="latest-container">
                 <ul>
                     {status && <i className="fa-solid fa-2x fa-left-long" onClick={decrease}></i>}
                     {sortData.map((e,index)=>{
                         if(user){
-                            if(index<next && index>=prev && e.uid === user.uid){
+                            if(index<next && index>=prev){
                                 e.money = parseFloat(e.money)
                                 let resultLatest = Intl.NumberFormat().format(e.money)
                                 return(
@@ -117,11 +145,19 @@ function Home(props) {
         </div>
       )
   }
-  else{
-    return(
-        <h1 className='load'>loading ...</h1>
-    )
+  else if(loadStatus === true){
+    if(!nf){
+        return(
+            <h1 className='load shining-text'>กำลังโหลดข้อมูล...</h1>
+        )
+    }
+    else{
+        return(
+            <h1 className='load'>ไม่พบข้อมูล</h1>
+        )
+    }
   }
+ 
   function increase(){
     if(next === data.length){
         return

@@ -60,7 +60,6 @@ h1,h3{
 }
 .graphdes{
   font-family: 'Kanit';
-  margin-top: -180px;
   text-align: center;
 }
 .earnpay-home{
@@ -239,4 +238,50 @@ i{
 }
 .earn-list a {
   color: black;
+}
+.shining-text {
+  position: relative;
+  background: linear-gradient(
+    to right,
+    #ffffff 20%,
+    gray 40%,
+    gray 60%,
+    #ffffff 80%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shine 2s linear infinite;
+}
+.chart-round{
+  width: 250px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.chart-bar{
+  width: 400px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.chart-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -100% center;
+  }
+  100% {
+    background-position: 100% center;
+  }
 }

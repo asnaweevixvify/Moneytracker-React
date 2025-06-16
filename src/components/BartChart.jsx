@@ -22,10 +22,14 @@ const Barchart = (props) => {
 
   const [earn,setEarn] = useState(Array(labels.length).fill(0))
   const [pay,setPay] = useState(Array(labels.length).fill(0))
+  const date = new Date()
+  const year = date.getFullYear()
 
   useEffect(()=>{
         const sortInfo = info.sort((a,b)=>a.month-b.month)
-        const numInfo = sortInfo.map(e=>{
+        const numInfo = sortInfo.filter((e)=>{
+          return e.year === year
+        }).map(e=>{
             return {...e , money:parseFloat(e.money)}
         })
 

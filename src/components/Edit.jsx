@@ -71,6 +71,7 @@ function Edit(props) {
     const dateValue = date
     const dateObj = new Date(dateValue);
     const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear()
     const user = auth.currentUser
 
     const newData = {
@@ -79,6 +80,7 @@ function Edit(props) {
       type:type,
       time:date,
       month:month,
+      year:year,
       uid:user.uid,
       id:props.id
     }
