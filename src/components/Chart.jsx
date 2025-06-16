@@ -47,7 +47,7 @@ const Chart = (props) => {
         label: 'รายรับรายจ่าย (บาท)',
         data: [earn,pay],
         backgroundColor: [
-            'rgba(75, 192, 75, 0.7)', 
+            '#00b102', 
             'red'
         ],
         borderColor: ['#fff'],

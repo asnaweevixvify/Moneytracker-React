@@ -80,7 +80,7 @@ const Barchart = (props) => {
       {
         label: 'รายรับ',
         data: earn,
-        backgroundColor: 'rgba(75, 192, 75, 0.7)',
+        backgroundColor: '#00b102',
       },
       {
         label: 'รายจ่าย',  

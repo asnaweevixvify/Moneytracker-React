@@ -12,6 +12,8 @@ function Earn(props) {
     const [payTotal,setPayTotal] = useState(0)
     const user = auth.currentUser
     const [oldYear,setOldYear] = useState(0)
+    const [nf,setNf] = useState(false)
+    const [loadStatus,setLoadStatus] = useState(true)
 
     useEffect(()=>{
         if(user && props.data){
@@ -22,6 +24,19 @@ function Earn(props) {
             setData(myData)
         }        
     },[props.data])
+
+    useEffect(()=>{
+        if(data.length>0){
+            setNf(false)
+            setLoadStatus(false)
+        }
+        else if(data.length<0){
+            setTimeout(() => {
+                setNf(true)
+                setLoadStatus(false)
+            }, 5000);
+        }
+    },[data])
 
     useEffect(()=>{
         if(user){
@@ -51,7 +66,7 @@ function Earn(props) {
         }
     },[data,year,month])
 
-  if(oldYear.length>0){
+  if(oldYear.length>0 && data.length>0 && !nf){
     return (
         <div className="earn-container">
             <div className="earn-header">
@@ -127,6 +142,16 @@ function Earn(props) {
         </div>
       )
   }
+  else if(loadStatus && !nf){
+    return(
+        <h1 className='load shining-text'>กำลังโหลดข้อมูล...</h1>
+    )
+  }
+  else if(nf && !loadStatus){
+        return(<h1 className='load'>ไม่พบข้อมูล</h1>)
+        
+  }
+
   function setMonth(e){
     setMonthName(e.target.value)
   }

@@ -32,30 +32,18 @@ function App() {
         }
       });
       return () => unsubscribe();
-    },[]);
+    },[status]);
 
     useEffect(()=>{
-      if(status === true && location.pathname === '/login'){
-        navigate('/')
-      }
-      else if(status === true && location.pathname === '/register'){
-        navigate('/')
-      }
-    },[location,status])
-  
-    useEffect(()=>{
-      if(status === false && location.pathname === '/earnpage'){
-        navigate('/login')
-      }
-      else if(status === false && location.pathname === '/paypage'){
-        navigate('/login')
-      }
-      else if(status === false && location.pathname === '/form'){
-        navigate('/login')
-      }
-      else if(status === false && location.pathname === '/edit'){
-        navigate('/login')
-      }
+          if(status === true && location.pathname === '/login'){
+            navigate('/')
+          }
+          else if(status === true && location.pathname === '/register'){
+            navigate('/')
+          }
+          else{
+            return
+          }
     },[location,status])
 
   useEffect(()=>{

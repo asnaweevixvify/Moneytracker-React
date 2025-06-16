@@ -8,6 +8,7 @@ body{
   display: block;
   margin: 0;
   padding: 0;
+  background-color: #3A3A3A;
 }
 h1,h3{
   font-family: 'Kanit';
@@ -15,12 +16,13 @@ h1,h3{
   text-align: center;
 }
 .main-text{
-  margin-top: 60px;
+  margin-top: 40px;
   font-size: 55px;
+  color: white;
 }
 .nav-container{
   width: 100vw;
-  background-color:#4e4e4e;
+  background-color:#2A2A2A;
 }
 .nav-container ul{
   display: flex;
@@ -36,6 +38,8 @@ h1,h3{
   cursor: pointer;
   transform: scale(1);
   transition: transform 0.2s ease-in-out;
+  color: white;
+  font-weight: 400;
 }
 .nav-container li:hover{
   transform: scale(1.1);
@@ -56,11 +60,22 @@ h1,h3{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 40px;
 }
 .graphdes{
   font-family: 'Kanit';
   text-align: center;
+  background-color:#dd8c00;
+  width: fit-content;
+  color: white;
+  padding: 10px;
+  border: 0px solid transparent;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
 }
 .earnpay-home{
   display: flex;
@@ -82,7 +97,7 @@ h1,h3{
   color: white;
 }
 .earn-home{
-  background-color: green;
+  background-color: #199b02;
   color: white;
 }
 .earn-home h1,h2,.pay-home h1,h2{
@@ -136,6 +151,7 @@ form select{
   background-color:black;
   width: 50%;
   height: 70px;
+  color: white;
 }
 .earn-list{
   display: flex;
@@ -191,6 +207,7 @@ form select{
   text-align: center;
   margin-top: 30px;
   font-size: 30px;
+  color: white;
 }
 .latest-container{
   display: flex;
@@ -215,6 +232,17 @@ form select{
   margin-top: 15px;
   border: 0px solid transparent;
   border-radius: 15px;
+}
+.latest-main{
+  background-color:blueviolet;
+  width: fit-content;
+  padding: 5px 20px 5px 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0px solid transparent;
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 .regis-container h5{
   text-align: center;
@@ -275,6 +303,28 @@ i{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.fa-left-long,.fa-right-long{
+  color:white;
+}
+.fa-left-long:hover,.fa-right-long:hover{
+  color:aliceblue;
+}
+form input{
+  background-color: white;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  color: black;
+}
+form select{
+  background-color: white;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  color: black;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(80%) sepia(100%) saturate(1000%) hue-rotate(200deg);
+  cursor:pointer;
 }
 
 @keyframes shine {

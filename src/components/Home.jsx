@@ -118,11 +118,11 @@ function Home(props) {
                     </div>
                 </div>
             </div>
-
+            <p className='line-main'></p>
             {status && <h2 className='latest-main'>รายการล่าสุด</h2>}
             <div className="latest-container">
                 <ul>
-                    {status && <i className="fa-solid fa-2x fa-left-long" onClick={decrease}></i>}
+                    {status && <i className="fa-solid fa-3x fa-left-long" onClick={decrease}></i>}
                     {sortData.map((e,index)=>{
                         if(user){
                             if(index<next && index>=prev){
@@ -139,7 +139,7 @@ function Home(props) {
                             }
                         }
                     })}
-                    {status && <i className="fa-solid fa-2x fa-right-long" onClick={increase}></i>}
+                    {status && <i className="fa-solid fa-3x fa-right-long" onClick={increase}></i>}
                 </ul>
             </div>
         </div>
