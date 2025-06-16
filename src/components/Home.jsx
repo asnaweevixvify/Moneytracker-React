@@ -108,13 +108,13 @@ function Home(props) {
                 <div className='chart-container'>
                     <div className='chart-round'>
                         {status && <Chart data={data}/>}
-                        {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย ({monthAll[month]})</p>}
+                        {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย (เดือน {monthAll[month]})</p>}
                     </div>
                 </div>
                 <div className='chart-container'>
                     <div className='chart-bar'>
                         {status && <Barchart data={data}/>}
-                        {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย ({year})</p>}
+                        {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย (ปี {year})</p>}
                     </div>
                 </div>
             </div>

@@ -19,6 +19,9 @@ h1,h3{
   margin-top: 40px;
   font-size: 55px;
   color: white;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 .nav-container{
   width: 100vw;
@@ -56,27 +59,7 @@ h1,h3{
   margin-right: auto;
   margin-top: 40px;
 }
-.chartAll{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-}
-.graphdes{
-  font-family: 'Kanit';
-  text-align: center;
-  background-color:#dd8c00;
-  width: fit-content;
-  color: white;
-  padding: 10px;
-  border: 0px solid transparent;
-  border-radius: 10px;
-  margin-top: 10px;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 25px;
-}
+
 .earnpay-home{
   display: flex;
   justify-content: center;
@@ -91,6 +74,11 @@ h1,h3{
   width: 400px;
   border: 2px solid white;
   border-radius: 15px;
+  transform: scale(1);
+  transition: transform 0.2s ease-in-out;
+}
+.earn-home:hover,.pay-home:hover{
+  transform: scale(1.1);
 }
 .pay-home{
   background-color: red;
@@ -232,6 +220,11 @@ form select{
   margin-top: 15px;
   border: 0px solid transparent;
   border-radius: 15px;
+  transform: scale(1);
+  transition: transform 0.2s ease-in-out;
+}
+.latest-list:hover{
+  transform: scale(1.1);
 }
 .latest-main{
   background-color:blueviolet;
@@ -297,6 +290,7 @@ i{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .chart-container{
   display: flex;
@@ -304,11 +298,32 @@ i{
   justify-content: center;
   align-items: center;
 }
+.chartAll{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.graphdes{
+  font-family: 'Kanit';
+  background-color:#dd8c00;
+  width: max-content;
+  color: white;
+  padding: 10px;
+  border: 0px solid transparent;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+}
 .fa-left-long,.fa-right-long{
   color:white;
+  opacity: 0.5;
 }
 .fa-left-long:hover,.fa-right-long:hover{
-  color:aliceblue;
+  opacity: 1;
 }
 form input{
   background-color: white;

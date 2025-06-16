@@ -19,7 +19,7 @@ function Earn(props) {
         if(user && props.data){
             const myData = props.data.filter((e)=>{
                 const uid = user.uid
-                return e.uid === uid
+                return e.uid === uid && e.type === "รายจ่าย"
             })
             setData(myData)
         }        
