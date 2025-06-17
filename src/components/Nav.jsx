@@ -36,8 +36,8 @@ function Nav() {
               <img src={firebasePic}></img>
             </div>
             <div className="login-out">
-              {!status && <Link to='/login'><li><i className="fa-solid fa-lg fa-right-to-bracket"></i></li></Link>}
-              {status && <li onClick={signBtn}><i className="fa-solid fa-lg fa-right-from-bracket"></i></li>}
+              {!status && <Link to='/login'><i className="fa-solid fa-2x fa-right-to-bracket"></i></Link>}
+              {status && <i className="fa-solid fa-2x fa-right-from-bracket"  onClick={signBtn}></i>}
             </div>
         </ul>
     </div>
