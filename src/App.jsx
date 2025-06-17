@@ -68,7 +68,6 @@ function App() {
     }
     else{
       await deleteDoc(doc(db,'track',id))
-      navigate('/')
       window.location.reload()
     }
   }
@@ -90,7 +89,7 @@ function App() {
  }
  else{
   return(
-    <>
+    <div className='app'>
     <Nav/>
       <Routes>
         <Route path='/' element={<Home data={data}/>}></Route>
@@ -101,7 +100,7 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/edit' element={<Edit id={editId} data={data} editItem={editItem}/>}></Route>
       </Routes>
-    </>
+    </div>
 )
  }
 }

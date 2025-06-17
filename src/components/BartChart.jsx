@@ -102,7 +102,7 @@ const Barchart = (props) => {
       legend: {
         position: 'top',
         labels: {
-          color: 'white', 
+          color: 'black', 
         },
       },
     },
@@ -112,26 +112,26 @@ const Barchart = (props) => {
         title: {
           display: true,
           text: 'จำนวนเงิน (บาท)',
-          color: 'white',
+          color: 'black',
         },
         ticks: {
-          color: 'white', 
+          color: 'black', 
         },
         grid: {
-          color: 'white', 
+          color: 'black', 
       },
       },
       x: {
         title: {
           display: true,
           text: 'เดือน',
-          color: 'white',
+          color: 'black',
         },
         ticks: {
-          color: 'white', 
+          color: 'black', 
         },
         grid: {
-          color: 'white', 
+          color: 'black', 
       },
       },
     },

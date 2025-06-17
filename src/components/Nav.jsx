@@ -4,6 +4,9 @@ import { BrowserRouter as Router,Route,Link,Routes, BrowserRouter } from 'react-
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from './firebase'
 import Swal from 'sweetalert2'
+import firebasePic from '../pic/firebase.png'
+import jsPic from '../pic/js.png'
+import reactPic from '../pic/react.png'
 
 function Nav() {
     const [status,setStatus] = useState(false)
@@ -21,12 +24,21 @@ function Nav() {
   return (
     <div className="nav-container">
         <ul>
-            <Link to='/'><li>หน้าหลัก</li></Link>
-            <Link to='/earnpage'><li>รายรับ</li></Link>
-            <Link to='/paypage'><li>รายจ่าย</li></Link>
-            <Link to='/form'><li>บันทึกรายการ</li></Link>
-            {!status && <Link to='/login'><li>เข้าสู่ระบบ</li></Link>}
-            {status && <li onClick={signBtn}>ออกจากระบบ</li>}
+            <div className="nav-on">
+              <Link to='/'><li>หน้าหลัก</li></Link>
+              <Link to='/earnpage'><li>รายรับ</li></Link>
+              <Link to='/paypage'><li>รายจ่าย</li></Link>
+              <Link to='/form'><li>บันทึก</li></Link>
+            </div>
+            <div className="logo">
+              <img src={jsPic}></img>
+              <img src={reactPic}></img>
+              <img src={firebasePic}></img>
+            </div>
+            <div className="login-out">
+              {!status && <Link to='/login'><li><i className="fa-solid fa-lg fa-right-to-bracket"></i></li></Link>}
+              {status && <li onClick={signBtn}><i className="fa-solid fa-lg fa-right-from-bracket"></i></li>}
+            </div>
         </ul>
     </div>
   )

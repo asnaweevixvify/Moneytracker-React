@@ -8,32 +8,51 @@ body{
   display: block;
   margin: 0;
   padding: 0;
-  background-color: #3A3A3A;
+  background-color: #fff;
+  width: 100vw;
 }
 h1,h3{
   font-family: 'Kanit';
   font-weight: 500;
   text-align: center;
 }
+.app{
+  display: flex;
+}
 .main-text{
   margin-top: 40px;
   font-size: 55px;
-  color: white;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+  color: black;
 }
 .nav-container{
-  width: 100vw;
-  background-color:#2A2A2A;
+  height: 100vh;
+  width: 150px;
+  background-color: #0186dc;
+  position:absolute;
+  left: 0;
+  box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+  -webkit-box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+  -moz-box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
 }
 .nav-container ul{
+  padding-top: 100px;
   display: flex;
+  flex-direction: column;
   list-style: none;
-  gap: 150px;
-  align-items: center;
-  height: 70px;
-  justify-content: center;
+  justify-content:space-between;
+  padding-left: 30px;
+  height: 100vh;
+}
+.nav-on{
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+.login-out{
+  padding-bottom: 20px;
 }
 .nav-container li{
   font-family: 'Kanit';
@@ -51,9 +70,9 @@ h1,h3{
   color: white;
 }
 .line-main{
-  background-color: white;
+  background-color: black;
   height: 2px;
-  width: 43.5%;
+  width: 85%;
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -72,10 +91,12 @@ h1,h3{
   padding-top: 20px;
   padding-bottom: 20px;
   width: 400px;
-  border: 2px solid white;
   border-radius: 15px;
   transform: scale(1);
   transition: transform 0.2s ease-in-out;
+  box-shadow: 6px 6px 31px 4px rgba(0,0,0,0.45);
+  -webkit-box-shadow: 6px 6px 31px 4px rgba(0,0,0,0.45);
+  -moz-box-shadow: 6px 6px 31px 4px rgba(0,0,0,0.45);
 }
 .earn-home:hover,.pay-home:hover{
   transform: scale(1.1);
@@ -108,6 +129,7 @@ form{
 }
 form p{
   font-size: 20px;
+  color: black;
 }
 form input{
   width: 500px;
@@ -124,6 +146,9 @@ form select{
   font-family: 'Kanit';
   font-size: 20px;
 }
+.form-text{
+  color: black;
+}
 .earn-container{
   display: flex;
   flex-direction: column;
@@ -132,6 +157,7 @@ form select{
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  width: 100vw;
 }
 .earn-topic{
   display: flex;
@@ -175,12 +201,17 @@ form select{
   height: 40px;
   font-family:Kanit;
   font-size: 20px;
+  background-color: white;
+  color: black;
 }
 .earn-header-text{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+}
+.pay-main{
+  color: black;
 }
 .regis-container{
   margin-left: auto;
@@ -222,6 +253,9 @@ form select{
   border-radius: 15px;
   transform: scale(1);
   transition: transform 0.2s ease-in-out;
+  box-shadow: 6px 6px 31px 4px rgba(0,0,0,0.45);
+  -webkit-box-shadow: 6px 6px 31px 4px rgba(0,0,0,0.45);
+  -moz-box-shadow: 6px 6px 31px 4px rgba(0,0,0,0.45);
 }
 .latest-list:hover{
   transform: scale(1.1);
@@ -236,20 +270,28 @@ form select{
   border-radius: 10px;
   margin-top: 30px;
   margin-bottom: 15px;
+  box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+  -webkit-box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+  -moz-box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+}
+.regis-main{
+  color: black;
 }
 .regis-container h5{
   text-align: center;
   font-weight: 400;
+  color: black;
 }
 .regis-container a h5 {
-  color: white;
+  color: black;
 }
 i{
   cursor: pointer;
 }
 .load{
   text-align: center;
-  padding-top: 300px;
+  padding-top: 350px;
+  color: black;
 }
 .fa-trash{
   color: red;
@@ -283,6 +325,7 @@ i{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 .chart-bar{
   width: 400px;
@@ -303,10 +346,21 @@ i{
   justify-content: center;
   align-items: center;
   gap: 40px;
+  box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+  -webkit-box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+  -moz-box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+  margin-top: 20px;
+  width: fit-content;
+  padding-left: 70px;
+  padding-right: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 250px;
+  padding-bottom: 20px;
 }
 .graphdes{
   font-family: 'Kanit';
-  background-color:#dd8c00;
+  background-color:#ffc101;
   width: max-content;
   color: white;
   padding: 10px;
@@ -317,9 +371,12 @@ i{
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 25px;
+  box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+  -webkit-box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
+  -moz-box-shadow: 6px 6px 31px -7px rgba(0,0,0,0.45);
 }
 .fa-left-long,.fa-right-long{
-  color:white;
+  color:black;
   opacity: 0.5;
 }
 .fa-left-long:hover,.fa-right-long:hover{
@@ -330,16 +387,30 @@ form input{
   border: 0px solid transparent;
   border-radius: 5px;
   color: black;
+  border: 2px solid black;
 }
 form select{
   background-color: white;
   border: 0px solid transparent;
   border-radius: 5px;
   color: black;
+  border: 2px solid black;
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(80%) sepia(100%) saturate(1000%) hue-rotate(200deg);
   cursor:pointer;
+}
+.logo{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 10px;
+}
+.logo img{
+  width: 40px;
+}
+.fa-right-from-bracket{
+  padding-left: 20px;
 }
 
 @keyframes shine {

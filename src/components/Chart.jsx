@@ -50,8 +50,8 @@ const Chart = (props) => {
             '#00b102', 
             'red'
         ],
-        borderColor: ['#fff'],
-        borderWidth: 2,
+        borderColor: [''],
+        borderWidth: 0,
       },
     ],
   };
@@ -62,7 +62,7 @@ const Chart = (props) => {
       legend: {
         position: 'right',
         labels: {
-          color: 'white', 
+          color: 'black', 
         },
       },
       title: {
