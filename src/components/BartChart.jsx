@@ -13,8 +13,7 @@ import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
-const Barchart = (props) => {
-    const info  = props.data
+const Barchart = ({data}) => {
     const labels = [
     'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.',
     'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'
@@ -26,7 +25,7 @@ const Barchart = (props) => {
   const year = date.getFullYear()
 
   useEffect(()=>{
-        const sortInfo = info.sort((a,b)=>a.month-b.month)
+        const sortInfo = data.sort((a,b)=>a.month-b.month)
         const numInfo = sortInfo.filter((e)=>{
           return e.year === year
         }).map(e=>{
@@ -72,9 +71,9 @@ const Barchart = (props) => {
         });
         setPay(payList)
 
-    },[info])
+    },[data])
 
-  const data = {
+  const dataChart = {
     labels,
     datasets: [
       {
@@ -137,7 +136,7 @@ const Barchart = (props) => {
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return <Bar data={dataChart} options={options} />;
 };
 
 export default Barchart;

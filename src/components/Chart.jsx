@@ -10,7 +10,7 @@ import {
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Chart = (props) => {
+const Chart = ({data}) => {
   const [earn,setEarn] = useState(0)
   const [pay,setPay] = useState(0)
   const date = new Date()
@@ -19,8 +19,7 @@ const Chart = (props) => {
   const user = auth.currentUser
   
   useEffect(()=>{
-    if(props.data.length>0){
-      const data = props.data
+    if(data.length>0){
       const newDataEarn = data.filter((e)=>{
         return e.year === year && e.type === 'รายรับ' && parseInt(e.month) === month+1
       }).map((e)=>{
@@ -39,8 +38,8 @@ const Chart = (props) => {
       setEarn(newDataEarn)
       setPay(newDataPay)
     }
-  },[props.data])
-  const data = {
+  },[data])
+  const dataChart = {
     labels: ['รายรับ','รายจ่าย'],
     datasets: [
       {
@@ -71,7 +70,7 @@ const Chart = (props) => {
     },
   };
 
-  return <Doughnut data={data} options={options} />;
+  return <Doughnut data={dataChart} options={options} />;
 };
 
 export default Chart;
