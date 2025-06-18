@@ -10,6 +10,7 @@ import reactPic from '../pic/react.png'
 
 function Nav() {
     const [status,setStatus] = useState(false)
+    const [showNav,setShowNav] = useState(true)
 
     useEffect(() => {
       const unsubscribe =  onAuthStateChanged(auth, (user) => {
@@ -24,7 +25,8 @@ function Nav() {
 
   return (
     <div className="nav-container">
-        <ul>
+      <i className={showNav ? 'fa-solid fa-bars fa-2x barActive' : 'fa-solid fa-bars fa-2x barUnActive'} onClick={setNav}></i>
+        <ul className={showNav ? 'nav active' : 'nav unActive'}>
             <div className="nav-on">
               <Link to='/'><li>หน้าหลัก</li></Link>
               <Link to='/earnpage'><li>รายรับ</li></Link>
@@ -43,6 +45,9 @@ function Nav() {
         </ul>
     </div>
   )
+  function setNav(){
+    setShowNav(!showNav)
+  }
   function signBtn(){
     Swal.fire({
       title: `<h3>ต้องการออกจากระบบหรือไม่ ?</h3>`,

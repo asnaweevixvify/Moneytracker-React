@@ -64,9 +64,10 @@ function Form() {
   function sendInfo(e){
     e.preventDefault()
     const newMoney = parseFloat(money)
+    const checkName = parseFloat(name)
     if(status && name!=='' 
     && newMoney !==0 && type!=='none' && date!=='' 
-    && typeof(name) === 'string' && !Number.isNaN(newMoney)) {
+    && Number.isNaN(checkName) && !Number.isNaN(newMoney)) {
       const dateValue = date
       const dateObj = new Date(dateValue);
       const month = dateObj.getMonth() + 1;
@@ -100,7 +101,7 @@ function Form() {
         title: `<h3>กรุณากรอกข้อมูลให้ครบ</h3>`
       });
     }
-    else if(typeof(name) !== 'string' || Number.isNaN(newMoney)){
+    else if(!Number.isNaN(checkName) || Number.isNaN(newMoney)){
       Swal.fire({
         icon: "error",
         title: `<h3>กรุณากรอกข้อมูลให้ถูกต้อง</h3>`
