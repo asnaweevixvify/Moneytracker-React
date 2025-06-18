@@ -51,12 +51,20 @@ h1,h3{
   flex-direction: column;
   gap: 50px;
 }
+.nav-on a li{
+  font-size: 20px;
+}
 .login-out{
   padding-bottom: 20px;
 }
+.login-out li{
+  font-size: 20px;
+}
+.login-out a li{
+  font-size: 20px;
+}
 .nav-container li{
   font-family: 'Kanit';
-  font-size: 25px;
   cursor: pointer;
   transform: scale(1);
   transition: transform 0.2s ease-in-out;

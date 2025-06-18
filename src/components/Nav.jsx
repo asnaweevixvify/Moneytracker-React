@@ -10,6 +10,7 @@ import reactPic from '../pic/react.png'
 
 function Nav() {
     const [status,setStatus] = useState(false)
+
     useEffect(() => {
       const unsubscribe =  onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -36,8 +37,8 @@ function Nav() {
               <img src={firebasePic}></img>
             </div>
             <div className="login-out">
-              {!status && <Link to='/login'><i className="fa-solid fa-2x fa-right-to-bracket"></i></Link>}
-              {status && <i className="fa-solid fa-2x fa-right-from-bracket"  onClick={signBtn}></i>}
+              {!status && <Link to='/login'><li>เข้าสู่ระบบ</li></Link>}
+              {status && <li onClick={signBtn}>ออกจากระบบ</li>}
             </div>
         </ul>
     </div>

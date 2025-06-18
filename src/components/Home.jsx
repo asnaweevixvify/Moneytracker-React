@@ -24,8 +24,8 @@ function Home(props) {
         'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'
       ];
 
-    useEffect(()=>{ 
-        const myData = props.data.filter((e)=>{
+    useEffect(()=>{
+        const myData = props.data.filter((e)=>{ 
            if(user){
             return e.uid === user.uid
            }

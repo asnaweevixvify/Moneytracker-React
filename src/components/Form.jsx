@@ -14,7 +14,6 @@ function Form() {
     const navigate = useNavigate()
     const [status,setStatus] = useState(false)
     const user = auth.currentUser
-
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -22,7 +21,6 @@ function Form() {
         } else {
           setStatus(false);
         }
-        console.log(status);
       });
       return () => unsubscribe();
     },[status]);
@@ -65,14 +63,17 @@ function Form() {
   }
   function sendInfo(e){
     e.preventDefault()
-    if(status && name!=='' && money !==0 && type!=='none' && date!==''){
+    const newMoney = parseFloat(money)
+    if(status && name!=='' 
+    && newMoney !==0 && type!=='none' && date!=='' 
+    && typeof(name) === 'string' && !Number.isNaN(newMoney)) {
       const dateValue = date
       const dateObj = new Date(dateValue);
       const month = dateObj.getMonth() + 1;
       const year = dateObj.getFullYear()
       addDoc(collection(db,'track'),{
           name:name,
-          money:money,
+          money:newMoney,
           type:type,
           time:date,
           month:month,
@@ -93,10 +94,16 @@ function Form() {
           window.location.reload()
         })
     }
-    else if(name==='' || money ===0 || type==='none' || date===''){
+    else if(name==='' || newMoney ===0 || type==='none' || date===''){
       Swal.fire({
         icon: "error",
         title: `<h3>กรุณากรอกข้อมูลให้ครบ</h3>`
+      });
+    }
+    else if(typeof(name) !== 'string' || Number.isNaN(newMoney)){
+      Swal.fire({
+        icon: "error",
+        title: `<h3>กรุณากรอกข้อมูลให้ถูกต้อง</h3>`
       });
     }
     else{
