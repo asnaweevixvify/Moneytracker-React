@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { auth } from './firebase'
 import Swal from 'sweetalert2'
 
-function Edit(props) {
+function Edit({data,id,editItem}) {
 
-  const [data,setData] = useState({})
+  const [newdata,setData] = useState({})
   const [type,setType] = useState('')
   const [name,setName] = useState('')
   const [money,setMoney] = useState(0)
@@ -14,9 +14,7 @@ function Edit(props) {
   const navigate = useNavigate()
   
   useEffect(()=>{
-    if(props.data.length>0 && props.id){
-      const id = props.id
-      const data = props.data
+    if(data.length>0 && id){
       const fillData = data.filter((e)=>{
         return e.id === id
       })
@@ -26,9 +24,9 @@ function Edit(props) {
       setMoney(fillData[0].money)
       setDate(fillData[0].time)
     }
-  },[props.data,props.id])
+  },[data,id])
 
-  if(data.length === 1){
+  if(newdata.length === 1){
     return (
       <div className="form-container">
           <h1 className='form-text'>แก้ไขรายการ</h1>
@@ -82,9 +80,9 @@ function Edit(props) {
       month:month,
       year:year,
       uid:user.uid,
-      id:props.id
+      id:id
     }
-    props.editItem(newData)
+    editItem(newData)
     setName('')
     setMoney(0)
     setType('')

@@ -6,13 +6,12 @@ import { useEffect,useState } from 'react'
 import { auth } from './firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 
-function Home(props) {
+function Home({data}) {
     
-    const [data,setData] = useState([])
+    const [newData,setData] = useState([])
     const [earn,setEarn] = useState(0)
     const [pay,setPay] = useState(0)
     const user = auth.currentUser
-    const sortData = [...data].sort((a,b) => new Date(b.time) - new Date(a.time))
     const [prev,setPrev] = useState(0)
     const [next,setNext] = useState(3)
     const [loadStatus,setLoadStatus] = useState(true)
@@ -25,7 +24,7 @@ function Home(props) {
       ];
 
     useEffect(()=>{
-        const myData = props.data.filter((e)=>{ 
+        const myData = data.filter((e)=>{ 
            if(user){
             return e.uid === user.uid
            }
@@ -34,14 +33,14 @@ function Home(props) {
             setLoadStatus(false)
             setData(myData)
         }
-        else if(props.data.length === 0 ){
+        else if(data.length === 0 ){
             setLoadStatus(true)
         }
-    },[props.data])
+    },[data])
 
     useEffect(()=>{
         if(user){
-            const earnMoney = data.filter((e)=>{
+            const earnMoney = newData.filter((e)=>{
                 return e.type === 'รายรับ' && e.year === year 
             }).map((e)=>{
                 return  parseFloat(e.money)
@@ -50,7 +49,7 @@ function Home(props) {
             },0)
             setEarn(earnMoney)
     
-            const payMoney = data.filter((e)=>{
+            const payMoney = newData.filter((e)=>{
                 return e.type === 'รายจ่าย' && e.year === year 
             }).map((e)=>{
                 return  parseFloat(e.money)
@@ -59,10 +58,8 @@ function Home(props) {
             },0)
             setPay(payMoney)
         }
-        else{
-            return
-        }
-    },[data])
+        return
+    },[newData])
 
     let resultEarn = Intl.NumberFormat().format(earn)
     let resultPay = Intl.NumberFormat().format(pay)
@@ -80,6 +77,7 @@ function Home(props) {
     },[]);
 
   if(loadStatus === false){
+    const sortData = [...newData].sort((a,b) => new Date(b.time) - new Date(a.time))
     return (
         <div className="home-container">
             <h1 className='main-text'>บันทึก รายรับ - รายจ่าย</h1>
@@ -98,13 +96,13 @@ function Home(props) {
             <div className="chartAll">
                 <div className='chart-container'>
                     <div className='chart-round'>
-                        {status && <Chart data={data}/>}
+                        {status && <Chart data={newData}/>}
                         {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย (เดือน {monthAll[month]})</p>}
                     </div>
                 </div>
                 <div className='chart-container'>
                     <div className='chart-bar'>
-                        {status && <Barchart data={data}/>}
+                        {status && <Barchart data={newData}/>}
                         {status && <p className='graphdes'>กราฟแสดงรายรับรายจ่าย (ปี {year})</p>}
                     </div>
                 </div>
@@ -144,7 +142,7 @@ function Home(props) {
   }
  
   function increase(){
-    if(next === data.length){
+    if(next === newData.length){
         return
     }
     else{

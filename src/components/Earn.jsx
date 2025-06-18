@@ -3,8 +3,8 @@ import { auth } from './firebase'
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom'
 
-function Earn(props) {
-    const [data,setData] = useState([])
+function Earn({data,getEdit,getDel}) {
+    const [newdata,setData] = useState([])
     const [earnList,setEarnList] = useState([])
     const [month,setMonthName] = useState('none')
     const date = new Date()
@@ -15,29 +15,31 @@ function Earn(props) {
     const [loadStatus,setLoadStatus] = useState(true)
 
     useEffect(()=>{
-        if(user && props.data){
-            const myData = props.data.filter((e)=>{
+        if(user && data){
+            const myData = data.filter((e)=>{
                 const uid = user.uid
                 return e.uid === uid && e.type === "รายรับ"
             })
             setData(myData)
         }        
-    },[props.data])
-
-    useEffect(()=>{
-        if(data.length>0){
-            setLoadStatus(false)
-        }
-        else if(data.length<0){
-            setLoadStatus(true)
-        }
     },[data])
 
     useEffect(()=>{
+        if(newdata.length>0){
+            setLoadStatus(false)
+        }
+        else if(newdata.length<0){
+            setLoadStatus(true)
+        }
+    },[newdata])
+
+    useEffect(()=>{
         if(user){
-            const earn = data.filter((e)=>{
+            const earn = newdata.filter((e)=>{
                 return e.type === 'รายรับ'
              })
+             setEarnList(earn)
+
              let total = earn.filter((e)=>{
                 if(month === 'none' || month === 'blank'){
                     return parseInt(e.year) === parseInt(year)
@@ -50,16 +52,16 @@ function Earn(props) {
              }).reduce((sum,num)=>{
                 return sum + num
              },0)
-             setEarnList(earn)
              total = Intl.NumberFormat().format(total)
              setEarnTotal(total)
-             const yearAll = data.map((e)=>{
+
+             const yearAll = newdata.map((e)=>{
                 return e.year
              })
              const yearList = new Set(yearAll)
              setOldYear([...yearList])
         }
-    },[data,year,month])
+    },[newdata,year,month])
 
   if(oldYear.length>0 && !loadStatus){
     return (
@@ -164,13 +166,13 @@ function Earn(props) {
             title: `<h3>ลบรายการสำเร็จ</h3>`,
             icon: "success"
           }).then(()=>{
-            props.getDel(id)
+            getDel(id)
           })
         }
       });
   }
   function getEditId(id){
-    props.getEdit(id)
+    getEdit(id)
   }
 }
 
